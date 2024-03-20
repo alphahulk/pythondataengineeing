@@ -1,0 +1,123 @@
+Here are responses to the intermediate Snowflake interview questions:
+
+Union & Union All Difference:
+
+UNION: Combines the results of two or more SELECT statements and removes duplicate rows.
+UNION ALL: Also combines the results of two or more SELECT statements but includes all rows, even if they are duplicates.
+Solving Tree Node Problem with Correlated Subquery:
+
+A correlated subquery can be used to solve problems involving hierarchical data, such as tree structures. By relating the subquery to the outer query using a common identifier, you can retrieve data from parent-child relationships in the tree.
+Snowflake SCD Type 2 in-depth explanation:
+
+SCD Type 2 in Snowflake involves maintaining historical versions of dimension records. This is typically achieved by adding start and end timestamps to the dimension table and inserting a new record with a new version whenever there is a change to the dimension data, while maintaining a reference to the previous version.
+Simple way to implement Type 1 SCD in Snowflake:
+
+Type 1 SCD in Snowflake involves updating dimension records directly without maintaining historical versions. This can be achieved by simply updating the existing records with new attribute values whenever there is a change in the source data.
+Recovering data from dropped table:
+
+Once a table is dropped in Snowflake, the data is permanently deleted. However, if Time Travel or Fail-Safe features were enabled before dropping the table, you might be able to recover the data using these features.
+Integration object or external stage requirement for copy command:
+
+Yes, it is mandatory to create an integration object or an external stage before executing the copy command in Snowflake. The copy command requires specifying a source location from where the data will be copied.
+Executing multiple Snowflake Queries/Stored Procedures in parallel:
+
+You can execute multiple queries or stored procedures in parallel by running them concurrently in different sessions or by using Snowflake's multi-cluster warehouses to distribute the workload across multiple compute nodes.
+Fail-Safe for creating Dev/Test/QA Environment:
+
+Fail-Safe is a feature in Snowflake that provides automated and continuous data protection. While it can help in disaster recovery scenarios, it should not be the sole method relied upon for creating development, test, or QA environments.
+Purpose of LATERAL in a semi-structured data query:
+
+LATERAL in Snowflake is used with FLATTEN to process semi-structured data. It allows you to reference columns from the outer query within the FLATTEN function, enabling the flattening of nested data structures.
+Time Travel for External Tables:
+
+Time Travel is not supported for external tables in Snowflake since they represent data stored outside of Snowflake's internal storage.
+Error 'Table doesn't exist' when accessing a table created in another session:
+
+This could occur if the table was created in a session-specific temporary context (e.g., temporary schema) or if the role, database, or schema settings are not correctly configured in the second session.
+Testing Snowflake queries used in ELT Pipeline:
+
+Snowflake queries used in ELT pipelines can be tested using automated testing frameworks or by executing the queries in a test environment against sample data.
+Table type for Staging/Landing Table:
+
+Staging or landing tables in Snowflake are typically temporary or transient tables, as they are used for intermediate storage during data ingestion processes. Temporary tables or transient tables are ideal for this purpose.
+Handling error notification for Snowpipe:
+
+Snowpipe can be configured to generate notifications for error records using Snowflake's Notification Services (e.g., email notifications, webhook notifications). You can define error handling logic within Snowflake or integrate with external monitoring systems to handle error notifications effectively.
+1. What is hashtag#Normalization?
+Database normalization is the process of designing the database in such a way that it reduces data redundancy without sacrificing integrity.
+The purposes of normalization are:
+
+.Remove useless or redundant data
+.Reduce data complexity
+.Ensure relationships between the tables in addition to the data residing in the tables
+.Ensure data dependencies and that the data is stored logically.
+
+2. What’s the Definition of a hashtag#Surrogate Key?
+A surrogate key, also known as a primary key, enforces numerical attributes. This surrogate key replaces natural keys. Instead of having primary or composite primary keys, data modelers create the surrogate key, which is a valuable tool for identifying records, building SQL queries, and enhancing performance.
+
+3. What is a Slowly Changing Dimension? How do you implement this is Snowflake ?
+These are dimensions used to manage both historical data and current data in data warehousing. There are four different types of slowly changing dimensions: SCD Type 0 through SCD Type 3. Get detailed documentation on how it implemented in projects from the link below.
+
+4. How do you overcome remote spillage in Snowflake? 
+
+Below questions cover a range of Snowflake functions and their usage in different scenarios.
+NVL function:
+
+Purpose: The NVL function in Snowflake is used to replace NULL values with a specified default value.
+Usage: Its syntax is NVL(expr1, expr2), where expr1 is the expression to evaluate, and if it evaluates to NULL, it returns expr2.
+TO_TIMESTAMP function:
+
+Purpose: The TO_TIMESTAMP function is used to convert a string expression representing a date or timestamp into a timestamp data type.
+Usage: It's used like TO_TIMESTAMP(string_expr [, format]). The format parameter is optional and specifies the format of the input string.
+CURRENT_DATE function:
+
+Purpose: The CURRENT_DATE function returns the current date in the session time zone.
+Usage: It's used simply as CURRENT_DATE(). For example, SELECT CURRENT_DATE() would return the current date.
+CONCAT vs. CONCAT_WS functions:
+
+CONCAT: Concatenates two or more strings together.
+CONCAT_WS: Concatenates strings with a specified separator.
+PARSE_JSON function:
+
+Purpose: The PARSE_JSON function is used to parse a JSON string and return the JSON value or object.
+Usage: It's used as PARSE_JSON(json_string). For example, SELECT PARSE_JSON('{"key": "value"}').
+LTRIM and RTRIM functions:
+
+Purpose: LTRIM removes leading spaces from a string, while RTRIM removes trailing spaces.
+Usage: They're used like LTRIM(string) and RTRIM(string).
+TRY_CAST function:
+
+Purpose: TRY_CAST function tries to cast a value to a specified data type and returns NULL if the cast fails.
+Usage: It's used as TRY_CAST(expr AS data_type). It's useful when dealing with potentially incompatible data types.
+DATEADD function:
+
+Purpose: DATEADD function adds a specified interval to a date or timestamp.
+Usage: It's used as DATEADD(interval, quantity, date). For example, DATEADD('day', 7, CURRENT_DATE()).
+ARRAY_AGG function:
+
+Purpose: ARRAY_AGG function aggregates values into an array.
+Usage: It's used like ARRAY_AGG(expr). It's typically used in combination with GROUP BY to aggregate values into arrays.
+DECODE function:
+
+Purpose: DECODE function provides a way to perform conditional value selection in a compact form.
+Usage: It's used like DECODE(expr, search, result, [search, result, ...], default). It's different from other conditional expressions like CASE in terms of syntax and functionality.
+STRTOK_TO_ARRAY function:
+
+Purpose: STRTOK_TO_ARRAY function splits a string into an array based on a delimiter.
+Usage: It's used as STRTOK_TO_ARRAY(string, delimiter).
+LEAD and LAG window functions:
+
+Purpose: LEAD and LAG functions allow you to access data from subsequent or preceding rows in a result set.
+Usage: They're used like LEAD(expr, offset, default) and LAG(expr, offset, default) within a window function context.
+ARRAY_INSERT function:
+
+Purpose: ARRAY_INSERT function inserts an element into a specified position in an array.
+Usage: It's used as ARRAY_INSERT(array, position, value).
+HASH function:
+
+Purpose: HASH function generates a hash value for the given expression.
+Usage: It's used like HASH(expr).
+OBJECT_INSERT and OBJECT_DELETE functions:
+
+Purpose: OBJECT_INSERT function adds or updates a key-value pair in an object, while OBJECT_DELETE removes a key-value pair.
+Usage: They're used as OBJECT_INSERT(obj, key, value) and OBJECT_DELETE(obj, key) respectively.
