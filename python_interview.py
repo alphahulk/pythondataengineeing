@@ -70,19 +70,15 @@
 # hashtag#Find the lenght of the list and simply
 # hashtag#swap the first element with (n-1)th element.
 
-# def swaplist(newlist):
-#  lenght = len(newlist)
-
-#  temp = newlist[0]
-#  newlist[0] = newlist[lenght-1]
-#  newlist[lenght-1] = temp
-
-#  return newlist
-
-# hashtag#Give a list
-# newlist=[12,34,34,4,5]
-
-# print(swaplist(newlist))
+def swap(input):
+    # Ensure the list has at least two elements before swapping
+    if len(input) >= 2:
+        # Store the first element in a temporary variable
+        first = input[0]
+        # Assign the last element to the first position
+        input[0] = input[-1]
+        # Assign the temporary variable value to the last position
+        input[-1] = first
 
 
 
