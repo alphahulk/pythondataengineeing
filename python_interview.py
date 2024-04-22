@@ -155,3 +155,87 @@ def swap(input):
 
 # plants = ['One','Two','Three','One']
 # has_duplicate_or_not(plants)
+
+
+
+
+prime number
+
+num = int(input("Enter a number: "))
+
+if num > 1:
+    for i in range(2, num):
+        if (num % i) == 0:
+            print(num, "is not a prime number")
+            break
+    else:
+        print(num, "is a prime number")
+else:
+    print(num, "is not a prime number")
+
+
+#pallindrome 
+Here's a breakdown of the code:
+
+Prompt the user to input a number.
+Initialize variables:
+temp: Store a temporary copy of the input number.
+reverse: Initialize a variable to store the reversed number.
+Use a while loop to reverse the digits of the number:
+Inside the loop:
+Get the last digit of the temp variable using the modulo operator % and store it in the remainder variable.
+Update the reverse variable by multiplying it by 10 and adding the remainder.
+Remove the last digit from temp by integer division // with 10.
+Repeat this process until temp becomes 0.
+After reversing the digits, compare the original number (num) with the reversed number (reverse).
+If they are equal, print "Palindrome"; otherwise, print "Not Palindrome".
+num = int(input("Enter a number: "))
+# Input: 12321
+temp = num
+reverse = 0
+while temp > 0:
+    remainder = temp % 10
+    reverse = (reverse * 10) + remainder
+    temp = temp // 10
+if num == reverse:
+  print('Palindrome')
+else:
+  print("Not Palindrome")
+
+
+
+#factorial
+num = int(input("Enter a number: "))
+# 7
+factorial = 1
+if num < 0:
+   print("Sorry, factorial does not exist for negative numbers")
+elif num == 0:
+   print("The factorial of 0 is 1")
+else:
+   for i in range(1,num + 1):
+       factorial = factorial*i
+   print("The factorial of",num,"is",factorial)
+
+
+
+
+#fibonacci
+def fibonacci(n):
+    if n <= 0:
+        return "Invalid input: Please enter a positive integer."
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Example usage:
+num = int(input("Enter a number: "))
+print("Fibonacci of", num, "is:", fibonacci(num))
+In this recursive approach:
+
+The fibonacci function takes an integer n as input and returns the Fibonacci number at position n.
+If n is 1, it returns 0; if n is 2, it returns 1.
+For n > 2, it recursively calculates the Fibonacci number by adding the previous two Fibonacci numbers (fibonacci(n - 1) and fibonacci(n - 2)).
