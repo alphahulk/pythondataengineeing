@@ -239,3 +239,25 @@ In this recursive approach:
 The fibonacci function takes an integer n as input and returns the Fibonacci number at position n.
 If n is 1, it returns 0; if n is 2, it returns 1.
 For n > 2, it recursively calculates the Fibonacci number by adding the previous two Fibonacci numbers (fibonacci(n - 1) and fibonacci(n - 2)).
+
+
+
+bubble sort
+def bubble_sort(arr):
+    n = len(arr)
+    # Traverse through all array elements
+    for i in range(n):
+        # Last i elements are already in place
+        for j in range(0, n-i-1):
+            # Traverse the array from 0 to n-i-1
+            # Swap if the element found is greater
+            # than the next element
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+# Example usage:
+my_list = [64, 34, 25, 12, 22, 11, 90]
+
+bubble_sort(my_list)
+
+print("Sorted array:", my_list)
