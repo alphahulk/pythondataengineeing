@@ -295,3 +295,56 @@ def binary_search(arr, x):
 # Test array
 arr = [ 2, 3, 4, 10, 40 ]
 x = 10
+
+
+
+
+# -------------------------
+def add_without_plus(a, b):
+    while b != 0:
+        # Carry now contains common set bits of a and b
+        carry = a & b
+        
+        # Sum of bits of a and b where at least one of the bits is not set
+        a = a ^ b
+        
+        # Carry is shifted by one so that adding it to a gives the required sum
+        b = carry << 1
+    
+    return a
+
+# Test the function
+num1 = 5
+num2 = 7
+print("Sum of", num1, "and", num2, "is:", add_without_plus(num1, num2))
+
+
+
+# ----------
+from datetime import datetime
+
+def convert_date_format(date_str):
+    # Parse the input date string into a datetime object
+    original_date = datetime.strptime(date_str, '%Y-%m-%d')
+    
+    # Format the datetime object into the desired format
+    converted_date = original_date.strftime('%d-%m-%Y')
+    
+    return converted_date
+
+# Test the function
+date_str = "2024-04-28"
+converted_date_str = convert_date_format(date_str)
+print("Original date:", date_str)
+print("Converted date:", converted_date_str)
+
+
+# ----------
+9. Write a Program to combine two different dictionaries. While combining, if you find the same keys, you can add the values of these same keys. Output the new dictionary
+We can use the Counter method from the collections module
+
+from collections import Counter
+d1 = {'key1': 50, 'key2': 100, 'key3':200}
+d2 = {'key1': 200, 'key2': 100, 'key4':300}
+new_dict = Counter(d1) + Counter(d2)
+print(new_dict)
