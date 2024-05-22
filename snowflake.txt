@@ -52,7 +52,7 @@ The purposes of normalization are:
 .Ensure relationships between the tables in addition to the data residing in the tables
 .Ensure data dependencies and that the data is stored logically.
 
-2. What�s the Definition of a hashtag#Surrogate Key?
+2. What’s the Definition of a hashtag#Surrogate Key?
 A surrogate key, also known as a primary key, enforces numerical attributes. This surrogate key replaces natural keys. Instead of having primary or composite primary keys, data modelers create the surrogate key, which is a valuable tool for identifying records, building SQL queries, and enhancing performance.
 
 3. What is a Slowly Changing Dimension? How do you implement this is Snowflake ?
@@ -121,3 +121,86 @@ OBJECT_INSERT and OBJECT_DELETE functions:
 
 Purpose: OBJECT_INSERT function adds or updates a key-value pair in an object, while OBJECT_DELETE removes a key-value pair.
 Usage: They're used as OBJECT_INSERT(obj, key, value) and OBJECT_DELETE(obj, key) respectively.
+
+
+
+
+Both Secure Views and Network Policies in Snowflake provide mechanisms to enhance data security, but they serve different purposes and operate at different levels of the security framework. Here’s a comparison to help you understand how they differ and when to use each:
+
+Secure Views
+Purpose: Secure Views are designed to control and restrict data access at the query level. They ensure that only authorized users can see the specific data exposed by the view.
+
+Key Features:
+
+Data Masking: You can create views that expose only certain columns or rows, effectively masking sensitive information.
+Row-Level Security: Implement row-level security by filtering rows based on user roles or attributes.
+Controlled Data Exposure: Only the data defined in the view is accessible, regardless of the underlying table permissions.
+Data Sharing: When sharing data with other Snowflake accounts, Secure Views ensure that only the defined subset of data is shared.
+Use Cases:
+
+Providing limited data access to specific users or roles.
+Creating multi-tenant applications where each tenant should see only their data.
+Sharing data with external partners while protecting sensitive information.
+Example:
+
+sql
+Copy code
+CREATE SECURE VIEW secure_employee_view AS
+SELECT employee_id, employee_name, department, salary
+FROM employee_data
+WHERE department = 'Sales';
+Network Policies
+Purpose: Network Policies control access to the Snowflake account based on IP address ranges, ensuring that only connections from trusted networks can access your Snowflake environment.
+
+Key Features:
+
+IP Whitelisting/Blacklisting: Define allowed and blocked IP address ranges.
+Enhanced Security: Restrict access to Snowflake to known and trusted network locations.
+Account-Level Control: Applies at the account level, affecting all users and services trying to connect to Snowflake.
+Use Cases:
+
+Restricting access to Snowflake from specific geographic locations.
+Ensuring that only users within your corporate network can access Snowflake.
+Enhancing security by blocking connections from potentially malicious IP addresses.
+Example:
+
+sql
+Copy code
+CREATE NETWORK POLICY my_policy
+  ALLOWED_IP_LIST=('192.168.1.0/24', '10.0.0.0/16')
+  BLOCKED_IP_LIST=('0.0.0.0/0');  -- Block all IPs except those in the allowed list
+Comparison
+Scope:
+
+Secure Views: Operate at the data/query level, providing fine-grained control over what data is exposed to users.
+Network Policies: Operate at the network level, controlling who can access the Snowflake account based on their IP addresses.
+Security Focus:
+
+Secure Views: Focused on data security, ensuring sensitive data is protected and access is controlled based on the user's role and permissions.
+Network Policies: Focused on access security, ensuring only trusted networks and IP addresses can connect to Snowflake.
+Implementation:
+
+Secure Views: Created using SQL commands within Snowflake and managed by database administrators and developers.
+Network Policies: Configured by Snowflake account administrators to enforce network-level access controls.
+Use Together:
+Secure Views and Network Policies can be used together to provide a comprehensive security strategy:
+
+Network Policies can restrict access to Snowflake to only trusted networks.
+Secure Views can further restrict what data those trusted users can see and interact with.
+Example Combined Usage:
+
+Network Policy: Restrict access to Snowflake to only the corporate network.
+
+sql
+Copy code
+CREATE NETWORK POLICY corp_network_policy
+  ALLOWED_IP_LIST=('192.168.1.0/24');
+Secure View: Ensure users within the corporate network can only see non-sensitive columns.
+
+sql
+Copy code
+CREATE SECURE VIEW corp_employee_view AS
+SELECT employee_id, employee_name, department
+FROM employee_data
+WHERE access_level = 'public';
+By leveraging both Secure Views and Network Policies, you can achieve both data-level and network-level security, ensuring that only authorized users from trusted networks can access your Snowflake environment and view appropriate data.
