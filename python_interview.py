@@ -442,3 +442,12 @@ So, the number of trailing zeros in
 =
 24
 20+4=24.
+
+
+
+
+How to Remove Letters From a String in Python
+input_string = 'Geeks123For123Geeks'
+output_string = ''.join([char for char in input_string if not char.isdigit()])
+
+print(output_string)
