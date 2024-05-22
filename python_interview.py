@@ -189,18 +189,23 @@ Remove the last digit from temp by integer division // with 10.
 Repeat this process until temp becomes 0.
 After reversing the digits, compare the original number (num) with the reversed number (reverse).
 If they are equal, print "Palindrome"; otherwise, print "Not Palindrome".
-num = int(input("Enter a number: "))
-# Input: 12321
-temp = num
-reverse = 0
-while temp > 0:
-    remainder = temp % 10
-    reverse = (reverse * 10) + remainder
-    temp = temp // 10
-if num == reverse:
-  print('Palindrome')
+def is_palindrome(number):
+    original_number = number
+    reversed_number = 0
+
+    while number > 0:
+        digit = number % 10  # Get the last digit
+        reversed_number = reversed_number * 10 + digit  # Append digit to reversed_number
+        number = number // 10  # Remove the last digit from number
+
+    return original_number == reversed_number
+
+# Example usage:
+number = 12321
+if is_palindrome(number):
+    print("Yes")
 else:
-  print("Not Palindrome")
+    print("No")
 
 
 
