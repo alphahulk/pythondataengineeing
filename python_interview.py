@@ -369,3 +369,71 @@ def reverse_list(arr):
  
 arr = [1, 2, 3, 4, 5, 6, 7]
 print(reverse_list(arr))
+
+
+
+def count_trailing_zeros(n):
+    count = 0
+    i = 5
+    while n >= i:
+        count += n // i
+        i *= 5
+    return count
+
+# Example usage:
+n = int(input("Enter a number: "))
+print(f"The number of trailing zeros in {n}! is {count_trailing_zeros(n)}")
+Explanation:
+Initialize the count: Start with a count of 0.
+Iterate through multiples of 5: For each multiple of 5 (i.e., 5, 25, 125, ...), count how many times 
+𝑛
+n can be divided by that multiple.
+Update the count: For each iteration, add the result of 
+𝑛
+n divided by the current multiple of 5 to the count.
+Stop when the multiple exceeds 
+𝑛
+n: When the multiple of 5 exceeds 
+𝑛
+n, stop the loop.
+Example:
+For 
+𝑛
+=
+100
+n=100:
+
+⌊
+100
+/
+5
+⌋
+=
+20
+⌊100/5⌋=20 (counts multiples of 5)
+⌊
+100
+/
+25
+⌋
+=
+4
+⌊100/25⌋=4 (counts multiples of 25)
+⌊
+100
+/
+125
+⌋
+=
+0
+⌊100/125⌋=0 (no multiples of 125 within 100)
+So, the number of trailing zeros in 
+100
+!
+100! is 
+20
++
+4
+=
+24
+20+4=24.
