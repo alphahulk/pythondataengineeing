@@ -472,3 +472,18 @@ print("The words frequency : " + str(res))
 output_string = ''.join([char for char in input_string if not char.isdigit()])
 
 print(output_string)
+
+-----------------------------
+from collections import Counter
+
+def count_valid_words(s, valid_words):
+    words = s.split()
+    word_count = Counter(words)
+    valid_count = {word: word_count[word] for word in valid_words if word in word_count}
+    return valid_count
+
+# Example usage
+s = "apple orange banana apple banana apple"
+valid_words = ["apple", "banana", "grape"]
+result = count_valid_words(s, valid_words)
+print(result)  # Output: {'apple': 3, 'banana': 2}
