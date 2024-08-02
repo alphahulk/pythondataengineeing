@@ -487,3 +487,36 @@ s = "apple orange banana apple banana apple"
 valid_words = ["apple", "banana", "grape"]
 result = count_valid_words(s, valid_words)
 print(result)  # Output: {'apple': 3, 'banana': 2}
+
+
+
+
+
+def count_valid_integers(lst):
+    count = 0
+    for item in lst:
+        if isinstance(item, int):
+            count += 1
+    return count
+
+# Example usage
+sample_list = [1, 'a', 3.5, 2, None, 7, '10', 4]
+valid_integer_count = count_valid_integers(sample_list)
+print("Number of valid integers:", valid_integer_count)
+
+
+def remove_duplicate_values(d):
+    seen = set()
+    new_dict = {}
+    for key, value in d.items():
+        if value not in seen:
+            new_dict[key] = value
+            seen.add(value)
+    return new_dict
+
+# Example usage
+original_dict = {'a': 1, 'b': 2, 'c': 1, 'd': 3}
+cleaned_dict = remove_duplicate_values(original_dict)
+print(cleaned_dict)
+
+
