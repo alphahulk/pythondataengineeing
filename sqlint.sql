@@ -358,3 +358,17 @@ From CTE, CTE2
 Where CTE.CATEGORY_ID = CTE2.CATEGORY_ID
 ;
 
+
+
+---------rolling 1 week----------
+
+SELECT
+    sale_date,
+    SUM(amount) OVER (
+        ORDER BY sale_date
+        ROWS BETWEEN 13 PRECEDING AND CURRENT ROW
+    ) AS rolling_2_week_sales
+FROM
+    sales
+ORDER BY
+    sale_date;
