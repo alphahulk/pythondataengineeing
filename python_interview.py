@@ -63,7 +63,157 @@ optimised
 
 # result=two_sum([1,4,6,20],10)
 # print(result)
+more optimised 2sum with hash map🍎 Imagine you have fruits
 
+# You have these fruits with numbers written on them:
+
+# [3, 8, 4, 2, 7]
+
+# Your teacher says:
+
+# "Find TWO numbers that add up to 10."
+
+# So target = 10.
+
+# You are walking from left to right with a small notebook 📒.
+
+# Step 1 — You see 3
+
+# You ask:
+
+# "I have 3. What other number do I need to make 10?"
+
+# 10 - 3 = 7
+
+# So you need 7.
+
+# Look in your notebook:
+
+# Notebook: empty
+
+# ❌ No 7.
+
+# So you write down:
+
+# 3 → 0
+
+# Meaning:
+
+# "I saw 3 at position 0."
+
+# Step 2 — You see 8
+
+# Ask:
+
+# "What do I need with 8 to make 10?"
+
+# 10 - 8 = 2
+
+# Need 2.
+
+# Notebook:
+
+# 3 → 0
+
+# ❌ No 2.
+
+# So write:
+
+# 3 → 0
+# 8 → 1
+# Step 3 — You see 4
+
+# Need:
+
+# 10 - 4 = 6
+
+# Do we have 6?
+
+# ❌ No.
+
+# Write:
+
+# 3 → 0
+# 8 → 1
+# 4 → 2
+# Step 4 — You see 2
+
+# Need:
+
+# 10 - 2 = 8
+
+# Now look in the notebook:
+
+# 3 → 0
+# 8 → 1  👈 YES!
+# 4 → 2
+
+# 🎉 We found it!
+
+# 8 + 2 = 10
+
+# Their positions are:
+
+# 8 → index 1
+# 2 → index 3
+
+# Answer:
+
+# [1, 3]
+# 🧠 So what is the HashMap doing?
+
+# It's simply your notebook 📒.
+
+# seen = {}
+
+# You put things in your notebook:
+
+# seen[3] = 0
+# seen[8] = 1
+# seen[4] = 2
+
+# Then when you see 2, you ask:
+
+# need = 10 - 2
+
+# which gives:
+
+# need = 8
+
+# Then:
+
+# if need in seen:
+
+# means:
+
+# "Is 8 written in my notebook?"
+
+# YES! 🎉
+
+# 🧸 Complete code
+# arr = [3, 8, 4, 2, 7]
+# target = 10
+
+# def two_sum(arr, target):
+
+#     seen = {}
+
+#     for i in range(len(arr)):
+
+#         need = target - arr[i]
+
+#         if need in seen:
+#             return [seen[need], i]
+
+#         seen[arr[i]] = i
+
+#     return []
+
+# print(two_sum(arr, target))
+
+# Output:
+
+# [1, 3]
 # ---**-----
 
 # 1. Write a function to get the intersection of two lists.
@@ -144,8 +294,19 @@ def swap(input):
 
 # res1 = [sub.replace('G','-').replace('e','G').replace('-','e') for sub in test_list]
 # print("Output:" +str(res1))
+-----goo approach
+# my_list = ['eGt', 'bGst', 'MGntorship', 'for', 'DataGnginGGring', ':']
 
+# result = []
 
+# for word in my_list:
+#     word = word.replace('e', '#')
+#     word = word.replace('G', 'e')
+#     word = word.replace('#', 'G')
+
+#     result.append(word)
+
+# print(result)
 # ---**----
 # 1 Remove Duplicates from the list.
 
@@ -163,6 +324,20 @@ def swap(input):
 
 # print(duplicateList)
 # print(uniqueList)
+optimised
+
+# lis = [1, 2, 1, 2, 3, 4, 5, 1, 1, 2, 5, 6, 7, 8, 9, 9]
+
+# seen = set()
+# duplicates = set()
+
+# for i in lis:
+#     if i in seen:
+#         duplicates.add(i)
+#     else:
+#         seen.add(i)
+
+# print(list(duplicates))
 
 # 2 Find if there are duplicates or not.
 
@@ -404,6 +579,23 @@ def count_trailing_zeros(n):
         i *= 5
     return count
 
+
+else this is more understanable
+def count_trailing_zeros(number):
+    count = 0
+
+    while number > 0:
+        if number % 10 == 0:
+            count += 1
+            number = number // 10
+        else:
+            break
+
+    return count
+
+
+print(count_trailing_zeros(12000))
+
 # Example usage:
 n = int(input("Enter a number: "))
 print(f"The number of trailing zeros in {n}! is {count_trailing_zeros(n)}")
@@ -492,6 +684,24 @@ output_string = ''.join([char for char in input_string if not char.isdigit()])
 
 print(output_string)
 
+
+def word_frequency(text):
+    words = text.split()
+
+    frequency = {}
+
+    for word in words:
+        if word in frequency:
+            frequency[word] += 1
+        else:
+            frequency[word] = 1
+
+    return frequency
+
+
+text = "apple banana apple orange banana apple"
+
+print(word_frequency(text))
 -----------------------------
 from collections import Counter
 
