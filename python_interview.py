@@ -17,6 +17,25 @@
 #         return max_profit
 #     print(max_profit)
 
+optimised
+# prices = [9, 1, 3, 6, 4, 8, 3, 5, 5]
+
+# def max_profit(prices):
+#     min_price = prices[0]
+#     max_profit = 0
+
+#     for price in prices:
+
+#         min_price = min(min_price, price)
+
+#         current_profit = price - min_price
+
+#         max_profit = max(max_profit, current_profit)
+
+#     return max_profit
+
+
+# print(max_profit(prices))
 
 # Python interview questions: (Was asked by hashtag#PWC for Snowflake Data Engineer Role)
 
